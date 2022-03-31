@@ -1,0 +1,6 @@
+/*ChatWindow.css*/
+
+.amys-window, .johns-window {
+	margin: 0;
+	border:  2px solid #ff0000;
+}

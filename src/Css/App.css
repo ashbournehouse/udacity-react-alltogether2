@@ -4,14 +4,20 @@
 
 .container {
   display: flex;
+  flex-direction: row;
+  flex-wrap:  nowrap;
+  justify-content: center;
+  align-items: center;
   margin-top: 5%;
+  border:  2px solid #00ff00;
+  padding: 8px;
 }
 
 .chat-window {
   text-align: center;
   width: 500px;
-  height: 100%;
-  margin: auto;
+  /*height: 100%;*/
+  margin: 20px;
   border: 15px solid #2eb9ce;
   padding: 20px;
   border-radius: 10px;
