@@ -1,58 +1,32 @@
 import React from 'react';
+import ShowMessages from './ShowMessages';
+import NewMessage from './NewMessage';
 
 class ChatWindow extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    this.addMessage = this.props.addMessage.bind(this);
   };
-
-  state = {
-    newMessageText: '',
-  };
-
-  handleNewMessage = (event) => {
-    this.setState({newMessageText: event.target.value });
-    console.log(this.state.newMessageText.length);
-  };
-
-    // inputIsEmpty is used to disable the addItem button
-  inputIsEmpty = () => {
-    return this.state.newMessageText === '';
-  };
-
+    /* There are two things going on in the chat window
+        - Displaying the message history
+        - Entering a new message
+       So, these are looking like two separate components
+        ... let's break it down!!
+    */
   render(){
+    const { messages, username } = this.props;
+
     return (
       <div className="chat-window">
         <h2>Fairly Awesome Chat</h2>
-          {/*<div className="name sender">{users[0].username}</div>*/}
-        <div className="name sender">{this.props.username}</div>
-        <ul className="message-list">
-          {this.props.messages.map((message, index) => (
-            <li key={index}
-              /*className={message.username === users[0].username ? 'message sender' : 'message recipient'}*/
-              className={message.username === this.props.username ? 'message sender' : 'message recipient'}
-            >
-              <p>{`${message.username}: ${message.text}`}</p>
-            </li>
-          ))}
-        </ul>
-        <div>
-          <form className="input-group">
-            <input type="text"
-                   className="form-control"
-                   placeholder="Enter your message..."
-                   value={this.state.newMessageText}
-                   onChange={this.handleNewMessage}
-            />
-            <div className="input-group-append">
-              {/*<button className="btn submit-button" disabled={this.isDisabled()}>*/}
-              <button className="btn submit-button"
-                      disabled={this.inputIsEmpty()}>
-                      SEND
-              </button>
-            </div>
-          </form>
-        </div>
+        <ShowMessages
+          username={username}
+          messages={this.props.messages}
+        />
+        <NewMessage
+          username = {username}
+          addMessage2 = {this.addMessage}
+        />
       </div>
     )
   }

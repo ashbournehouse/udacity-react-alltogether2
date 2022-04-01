@@ -1,0 +1,30 @@
+/*ShowMessages.css*/
+
+.message-history {
+	background-color: #666666;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+.message-list {
+  list-style-type: none;
+  height: 80%;
+  border: 1px solid;
+  text-align: left;
+  min-height: 320px;
+  border-radius: 10px;
+  padding-top: 1em;
+}
+
+.name {
+  font-size: 1.8em;
+}
+
+.sender {
+  color: #00cc66;
+}
+
+.recipient {
+  color: #3399ff;
+}

@@ -14,17 +14,29 @@ The instructions are included in the `instructions.md` file.
 const users = [{ username: 'Amy' }, { username: 'John' }];
 
 class App extends Component {
-  /*
-  If the user did not type anything, he/she should not be
-  allowed to submit.
-  */
   state = {
     messages: [
       { username: 'Amy', text: 'Hi, Jon!' },
       { username: 'Amy', text: 'How are you?' },
       { username: 'John', text: 'Hi, Amy! Good, you?' },
     ],
-  }
+  };
+  addMessage = (username, message) => {
+    const newMessage = {
+      ['username']: username,
+      ['text']: message,
+    };
+    this.setState(currentState => ({
+      messages: currentState.messages.concat([newMessage])
+    }))
+  };
+
+    /* There are two things going on in the chat window
+        - Displaying the message history
+        - Entering a new message
+       So, these are looking like two separate components
+        ... let's break it down!!
+    */
 
   render() {
     return (
@@ -35,12 +47,14 @@ class App extends Component {
             <ChatWindow
               username = {users[0].username}
               messages = {this.state.messages}
+              addMessage = {this.addMessage}
             />
           </div>
           <div className="johns-window">
             <ChatWindow
               username={users[1].username}
               messages={this.state.messages}
+              addMessage = {this.addMessage}
              />
           </div>
         </div>
